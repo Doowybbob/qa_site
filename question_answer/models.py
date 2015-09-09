@@ -1,6 +1,10 @@
 from django.db import models
 
 # Create your models here.
+class Tag(models.Model):
+    tag_name = models.CharField(max_length=16)
+#TODO:
+#make tags clickable
 
 class Question(models.Model):
 # Question model desc.
@@ -8,8 +12,8 @@ class Question(models.Model):
     question_text = models.CharField(max_length=512)
     score = models.IntegerField(default=0)
     pub_date = models.DateTimeField()
+    tags = models.ManyToManyField(Tag)
 #TODO:
-#tags
 #user
 #comments
     def __string__ (self):
@@ -24,3 +28,4 @@ class Answer(models.Model):
 #TODO:
 #user
 #comments
+
