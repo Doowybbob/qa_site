@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from .models import Question
+from .models import Question, Tag
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .forms import QuestionForm
+from django.utils import timezone
 # Create your views here.
 
 def index (request):
@@ -14,6 +15,22 @@ def index (request):
 
 def ask(request):
     if request.method == "POST":
+
+        new_q = Question()
+        new_q.question_name = request.POST['QuestionName']
+        new_q.question_text = request.POST['QuestionText']
+        new_q.pub_date = timezone.now()
+        new_q.save()
+        tag_strings = request.POST['TagList']
+        tag_strings = tag_strings.split(' ')
+
+        tag_list = Tag.objects.all()
+        for tag in tag_strings:
+            t, created = Tag.objects.get_or_create(tag_name=tag)
+            new_q.tags.add(t)
+
+        new_q.save()
+
         return HttpResponseRedirect('/questions/')
     else:
         pass

@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 {% for question in question_list %}
-                <hr>
+                <div class="row">
                 <div class="col-md-2 text-center">
                     <h1>{{ question.score }}</h1>
                     <p>Score</p>
@@ -54,6 +54,7 @@
                     {% for tag in question.tags.all %}
                     <span class="label label-info">{{ tag.tag_name }}</span>
                     {% endfor %}
+                </div>
                 </div>
                 {% endfor %}
             </div>

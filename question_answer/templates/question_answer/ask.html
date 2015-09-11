@@ -6,15 +6,15 @@
     {% csrf_token %}
                 <div class="form-group">
                         <label for="QuestionName">Question Name?</label>
-                        <input id="QuestionName" class="form-control">
+                        <input id="QuestionName" class="form-control" name="QuestionName">
                     </div>
                     <div class="form-group">
                         <label for="QuestionText">Ask your question:</label>
-                        <textarea id="QuestionText" class="form-control" rows="3"></textarea>
+                        <textarea id="QuestionText" name="QuestionText" class="form-control" rows="3"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="TagList">Question Tags</label>
-                        <input id="TagList" class="form-control">
+                        <input id="TagList" class="form-control" name="TagList">
                         <p>Add a space separated list of tags that apply to your question. Ex "tag tagtag"</p>
                     </div>
     <button type="submit" class="btn btn-default">Ask</button>
