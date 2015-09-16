@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Question, Tag
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
@@ -12,6 +12,14 @@ def index (request):
     template = loader.get_template("question_answer/index.html")
     context = RequestContext(request, {'question_list': question_list,})
     return HttpResponse(template.render(context))
+
+def detail(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    template = loader.get_template("question_answer/question.html")
+    context = RequestContext(request, {'question': question,})
+    return HttpResponse(template.render(context))
+
+
 
 def ask(request):
     if request.method == "POST":
