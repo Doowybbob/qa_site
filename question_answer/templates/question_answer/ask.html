@@ -1,5 +1,7 @@
 {% extends 'question_answer/base.html' %}
 
+{% block title %}Ask A Question{% endblock %}
+
 {% block content %}
 
 <form action="{% url 'questions:ask' %}" method="post" >
