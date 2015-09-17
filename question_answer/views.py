@@ -52,7 +52,11 @@ def ask(request):
         pass
     return render(request, 'question_answer/ask.html')
 
+def by_tag (request, pk):
+    tag = get_object_or_404(Tag, pk=pk)
 
-def add_question(request):
-    #adding a new question to the db
-    return HttpResponseRedirect(reverse('questions:index'))
+    question_list = tag.question_set.all()
+    template = loader.get_template("question_answer/index.html")
+    context = RequestContext(request, {'question_list': question_list,})
+    return HttpResponse(template.render(context))
+
