@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Question, Tag
+from .models import Question, Tag, Answer
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -15,6 +15,14 @@ def index (request):
 
 def detail(request, pk):
     question = get_object_or_404(Question, pk=pk)
+    if request.method == "POST":
+        answer = Answer()
+        answer.answer_text = request.POST["answer_text"]
+        answer.pub_date = timezone.now()
+        answer.question_id = question.id
+        answer.save()
+    else:
+        pass
     template = loader.get_template("question_answer/question.html")
     context = RequestContext(request, {'question': question,})
     return HttpResponse(template.render(context))
