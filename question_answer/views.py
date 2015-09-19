@@ -27,6 +27,31 @@ def detail(request, pk):
     context = RequestContext(request, {'question': question,})
     return HttpResponse(template.render(context))
 
+def voteUp(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    question.score = question.score + 1
+    question.save()
+    return HttpResponse("okay")
+
+def voteDown(request, pk):
+    question = get_object_or_404(Question, pk=pk)
+    if question.score > 0:
+        question.score = question.score - 1
+        question.save()
+    return HttpResponse("okay")
+
+def answerVoteUp(request, pk):
+    answer = get_object_or_404(Answer, pk=pk)
+    answer.score = answer.score + 1
+    answer.save()
+    return HttpResponse("okay")
+
+def answerVoteDown(request, pk):
+    answer = get_object_or_404(Answer, pk=pk)
+    if answer.score > 0:
+        answer.score = answer.score - 1
+        answer.save()
+    return HttpResponse("okay")
 
 
 def ask(request):

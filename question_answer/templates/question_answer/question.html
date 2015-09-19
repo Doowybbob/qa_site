@@ -7,8 +7,10 @@
 <!-- display the question title -->
 <div class="row">
     <div class="col-md-2 text-center">
-        <h1>{{ question.score }}</h1>
+        <span id="upvote" class="glyphicon glyphicon-chevron-up upvote"></span>
+        <h4 id="qScore">{{ question.score }}</h4>
         <p>Score</p>
+        <span id="downvote" class="glyphicon glyphicon-chevron-down downvote"></span>
     </div>
     <div class="col-md-10">
         <h2>{{ question.question_name }}</h2>
@@ -17,11 +19,13 @@
     </div>
 </div>
 {% for answer in question.answer_set.all %}
-<div class="row">
+<div id="answer-{{ answer.id }}" class="row">
     <hr>
     <div class="col-md-2 text-center">
-        <h3>0</h3>
+        <span class="glyphicon glyphicon-chevron-up upvote"></span>
+        <h4>{{ answer.score }}</h4>
         <p>Score</p>
+        <span class="glyphicon glyphicon-chevron-down downvote"></span>
     </div>
     <div class="col-md-10">
         <p>{{ answer.answer_text }}</p>
@@ -40,3 +44,5 @@
 
 
 {% endblock %}
+
+
