@@ -5,19 +5,28 @@
 {% block content %}
 
 {% for question in question_list %}
+        <div class="row">
+            <div class="col-md-3 text-center">
                 <div class="row">
-                <div class="col-md-2 col-md-offset-1 text-center">
-                    <h2>{{ question.score }}</h2>
-                    <p>Score</p>
+                    <div class="col-md-6 text-center">
+                        <h2>{{ question.score }}</h2>
+                        <p>Score</p>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <h2>{{ question.answer_set.count }}</h2>
+                        <p>Answers</p>
+                    </div>
                 </div>
-                <div class="col-md-9">
-                    <h3><a href="{% url 'questions:detail' question.id %}">{{ question.question_name }}</a></h3>
-                    <p>{{ question.question_text }}</p>
-                    {% for tag in question.tags.all %}
-                    <a href="{% url 'questions:tag' tag.id %}" class="label label-info">{{ tag.tag_name }}</a>
-                    {% endfor %}
-                </div>
-                </div>
-                <hr>
+            </div>
+
+            <div class="col-md-9">
+                <h3><a href="{% url 'questions:detail' question.id %}">{{ question.question_name }}</a></h3>
+                <p>{{ question.question_text }}</p>
+                {% for tag in question.tags.all %}
+                <a href="{% url 'questions:tag' tag.id %}" class="label label-info">{{ tag.tag_name }}</a>
                 {% endfor %}
+            </div>
+        </div>
+        <hr>
+{% endfor %}
 {% endblock %}
