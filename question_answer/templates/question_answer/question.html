@@ -1,5 +1,7 @@
 {% extends 'question_answer/base.html' %}
 
+{% load staticfiles %}
+
 {% block title %}{{ question.question_text }}{% endblock %}
 
 {% block content %}
@@ -45,4 +47,6 @@
 
 {% endblock %}
 
-
+{% block scripts %}
+<script src="{% static 'questions/js/voting.js' %}"></script>
+{% endblock %}
