@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CRIPSY_TEMPLATE_PACK = 'bootstrap3'
+LOGIN_REDIRECT_URL = '/questions/'
 
 # Application definition
 
@@ -38,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'question_answer',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -1,0 +1,18 @@
+{% extends 'question_answer/base.html' %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Oops! Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<!-- put new content here  -->
+{% crispy form %}
+
+
+{% endblock %}

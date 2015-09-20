@@ -1,0 +1,30 @@
+{% extends 'question_answer/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<p>Oops! Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<!-- put new content here  -->
+<div class="col-md-6 col-md-offset-3">
+<form action="{% url 'django.contrib.auth.views.login' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="username">Username:</label>
+        <input id="username" name="username" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="form-control">
+    </div>
+    <button type="submit" class="btn btn-default">Login</button>
+</div>
+</form>
+
+
+{% endblock %}

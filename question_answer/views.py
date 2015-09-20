@@ -3,7 +3,7 @@ from .models import Question, Tag, Answer
 from django.template import RequestContext, loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from .forms import QuestionForm
+from .forms import QuestionForm, CreateUserForm
 from django.utils import timezone
 # Create your views here.
 
@@ -85,3 +85,8 @@ def by_tag (request, pk):
     context = RequestContext(request, {'question_list': question_list,})
     return HttpResponse(template.render(context))
 
+def register(request):
+    form = CreateUserForm()
+    template = loader.get_template("registration/register.html")
+    context = RequestContext(request, {'form':form,})
+    return HttpResponse(template.render(context))
